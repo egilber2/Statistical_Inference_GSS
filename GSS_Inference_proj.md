@@ -15,9 +15,9 @@ Introduction
 
 This is a project where I will be using GSS data as a playground for statistical inference. I'll use a research question to motivate the different inference methods that I cover. This will be followed by some EDA to explore the data and gain some insight using visualizations. Finally, I will use a Consider this a work in progress as I plan on adding examples of different statistical inference techniques as time allows.
 
-The General Social Survey ([GSS](http://gss.norc.org/)) is a federally funded social survey that began in 1972. With a few exceptions, the survey was initally done on a yearly basis until 1994, after which it was conducted every other year. The GSS is second only to the US census as a source of data for the social sciences. Respondents are selected randomly using an area probability design and the surveys are conducted as a face-to-face interview.
+The General Social Survey ([GSS](http://gss.norc.org/)) is a federally funded social survey that began in 1972. With a few exceptions, the survey was initially done on a yearly basis until 1994, after which it was conducted every other year. The GSS is second only to the US census as a source of data for the social sciences. Respondents are selected randomly using an area probability design and the surveys are conducted as a face-to-face interview.
 
-Though there are some [weighting](http://gss.norc.org/documents/codebook/GSS_Codebook_AppendixA.pdf) techniques to be aware of, the data can be used for inference and establishing correlation between variables. As this is is only observational data, conclusions regarding causation can not be made. Some potential biases include potential respondents who are not home at the time the survey was to be conducted and potential respondents that refuse to participate.
+Though there are some [weighting](http://gss.norc.org/documents/codebook/GSS_Codebook_AppendixA.pdf) techniques to be aware of, the data can be used for inference and establishing correlation between variables. As this is only observational data, conclusions regarding causation cannot be made. Some potential biases include potential respondents who are not home at the time the survey was to be conducted and potential respondents that refuse to participate.
 
 Load packages
 -------------
@@ -35,7 +35,7 @@ library(foreign)
 Load data
 ---------
 
-The data was obtained by creating an 'extract' from the GSS website. Essentially, the site allows one to choose features a la carte from the &gt;5000 features available and then to download the combined feature set in a file type of your choosing. Alternatively, the entire data set can be downloade in one shot.
+The data was obtained by creating an 'extract' from the GSS website. Essentially, the site allows one to choose features a la carte from the &gt;5000 features available and then to download the combined feature set in a file type of your choosing. Alternatively, the entire data set can be downloaded in one shot.
 
 ``` r
 # load data
@@ -2301,7 +2301,7 @@ Research Question 1
 
 *Is the proportion of people who have 'Hardly Any' confidence in the press different in 2016 than it was in 2010?*
 
-We'll first calculate the proportion of those with 'Hardly any' confidence across the two years in question. This will tell us the differnce in proportions in our sample data. To make an infernce about the greater population of interest, we'll turn to a hypothesis test. The hypothesis test is set up as follows:
+We'll first calculate the proportion of those with 'Hardly any' confidence across the two years in question. This will tell us the difference in proportions in our sample data. To make an inference about the greater population of interest, we'll turn to a hypothesis test. The hypothesis test is set up as follows:
 
 H0(null): p\_hardly\_any(2016) = p\_hardly\_any(2010)
 
@@ -2494,7 +2494,7 @@ inference(y = press_conf, data = gss_press10, statistic = "proportion", type = "
 
 #### Hypothesis Test- Difference in Proportions
 
-We can also run a hypothesis test using the inference function. This will be a two sided test as we are looking for a differnce in proportions.
+We can also run a hypothesis test using the inference function. This will be a two-sided test as we are looking for a difference in proportions.
 
 ``` r
 inference(y = press_conf, x = year, data = gss_press, statistic = "proportion", 
