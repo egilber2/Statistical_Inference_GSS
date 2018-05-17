@@ -24,13 +24,9 @@ Load packages
 -------------
 
 ``` r
-library(ggplot2)
-library(dplyr)
-library(statsr)
 library(tidyverse)
+library(statsr)
 library(janitor)
-library(infer)
-library(foreign)
 ```
 
 Load data
@@ -2387,12 +2383,11 @@ Total
 </tbody>
 </table>
 
-It's difficult to draw any conclusions by simply looking at the counts in the table so we'll calculate the proportion who have 'hardly\_any' confidence in the press across years.
-
 From the table, we can calculate the proportion of respondents who had 'hardly\_any' confidence in the press in 2010 and 2016.
 $$\\small \\hat{p}\_{2010} = 594/1377 = 0.43$$
 $$\\small \\hat{p}\_{2016} = 963/1956 = 0.49$$
- It appears that the proportion of respondents in our sample data who had 'hardly\_any' confidence in the press increased in 2016 relative to 2010. We can visualize the difference in proportions with a bar plot. It appears that the proportion of respondents in our sample data who had 'hardly\_any' confidence in the press increased in 2016 relative to 2010. We can visualize the difference in proportions with a bar plot.
+
+It appears that the proportion of respondents in our sample data who had 'hardly\_any' confidence in the press increased in 2016 relative to 2010. We can visualize the difference in proportions with a bar plot.
 
 ``` r
 ggplot(gss_press, aes(x = year, fill = press_conf)) + theme(panel.border = element_rect(colour = "black", 
@@ -2411,11 +2406,6 @@ While there was clearly a difference in proportions in our sample data, we are i
 
 Before we rely on the normal model to calculate the confidence interval for the difference in proportions, we need to ensure that certain conditions are met.
 To satisfy the independence requirement, the data should be a random sample, n should be &lt;10% of the population, and the two samples should be independent. The sample size/skew condition is met when there are at least 10 instances of successes *and* failures. Success is defined as 'hardly\_any' in this analysis.
-
-``` r
-# table of counts for press_conf by years
-tabyl(gss_press, year, press_conf) %>% adorn_totals(c("row", "col"))
-```
 
 <table>
 <thead>
@@ -2542,7 +2532,7 @@ The standard error then becomes:
 $$ \\small SE \\approx \\sqrt{\\frac{0.47(1-0.47)}{1956} + \\frac{0.47(1-0.47)}{1377}} = 0.0176$$
  Finally our test statistic is calculated below.
 $$\\small Z = \\frac{0.061-0}{0.0176}=3.47 $$
- We can now calculate the p-value from our Z-score. The shaded areas in the plot below correspond to the p-value for our two-tailed test.
+ We can now calculate the p-value from our Z-score.
 
 ``` r
 # calculation of p-value for two-tailed test
@@ -2555,7 +2545,7 @@ $$\\small Z = \\frac{0.061-0}{0.0176}=3.47 $$
 
 With p&lt;0.05, we can reject the null hypothesis and state that we are 95% confident that there is a difference in the proportion of people in 2010 and 2016 that had 'hardly\_any' confidence in the press. Based on the data, there is strong evidence that the proportion increased in 2016. The confidence interval result and the hypothesis test are in agreement in that the 95% confidence interval did not contain 0 and the hypothesis test rejected the null hypothesis which stated that the differnce in proportions was 0.
 
-Finally, rather than going through the above calculations, the statsr package provides the inference() function which can, among other things, run a hypothesis test in one chunk of code and arriving at the same p-value and conclusion.
+Finally, rather than going through the above calculations, we can run a hypothesis test in one chunk of code with the inference() function. The output also provides a visualization of the shaded regions of the normal curve corresponding to the p-value for our hypothesis test.
 
 ``` r
 # hypothesis test with inference function
